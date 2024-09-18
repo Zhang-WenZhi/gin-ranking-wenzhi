@@ -21,8 +21,13 @@ func Router() *gin.Engine {
 		// user.POST("/list", controllers.GetList)
 
 		// 请求参数 方式一：/info/:id
-		user.GET("/info/:id/:name", controllers.UserController{}.GetUserInfo)
+		// user.GET("/info/:id/:name", controllers.UserController{}.GetUserInfo)
+		user.GET("/info/:id", controllers.UserController{}.GetUserInfo)
 		user.POST("/list", controllers.UserController{}.GetList)
+		user.POST("/add", controllers.UserController{}.AddUser)
+		user.POST("/update", controllers.UserController{}.UpdateUser)
+		user.POST("/delete", controllers.UserController{}.DeleteUser)
+		user.POST("/list/test", controllers.UserController{}.GetUserListTest)
 		
 		user.GET("/hello", func(ctx *gin.Context) {
 			ctx.String(http.StatusOK, "Hello world string")
