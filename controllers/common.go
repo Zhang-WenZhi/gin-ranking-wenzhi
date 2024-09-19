@@ -1,9 +1,10 @@
 package controllers
 
 import (
+	"crypto/md5"
 	"fmt"
+	"encoding/hex"
 	"github.com/gin-gonic/gin"
-
 )
 
 
@@ -75,4 +76,10 @@ func ReturnError(c *gin.Context, code int, msg interface{}) {
 			Msg:  fmt.Sprintf("%v", msg),
 	}
 	c.JSON(200, json)
+}
+
+func EncryMd5(s string) string {
+	ctx := md5.New()
+	ctx.Write([]byte(s))
+	return hex.EncodeToString(ctx.Sum(nil))
 }
