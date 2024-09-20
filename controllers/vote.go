@@ -4,6 +4,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+	"wenzhi.com/gin-ranking/cache"
 	"wenzhi.com/gin-ranking/models"
 )
 
@@ -38,6 +39,11 @@ func (v VoteController) AddVote(c *gin.Context) {
 	if err == nil {
 		// 更新参赛选手的得票数，自增1
 		models.UpdatePlayerScore(playerId)
+		// 同时更新redis
+		var redisKey string
+		redisKey = "ranking:" + strconv.Itoa(player.Aid)
+		cache.Rdb.ZIncrBy(cache.Rctx, redisKey, 1, strconv.Itoa(playerId))
+
 		ReturnSuccess(c, 0, "投票成功", rs, 1)
 		return
 	} else {

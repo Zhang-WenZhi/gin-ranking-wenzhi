@@ -93,7 +93,6 @@ package main
 
 // }
 
-
 import (
 	"wenzhi.com/gin-ranking/router"
 )
@@ -101,6 +100,7 @@ import (
 func main() {
 	r := router.Router()
 	r.Run(":9999")
+	// Mac 环境下 打包：GOOS=linux GOARCH=amd64 go build
 }
 
 // import (
@@ -129,4 +129,3 @@ func main() {
 
 // 	r.Run(":9999")
 // }
-
