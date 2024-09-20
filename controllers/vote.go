@@ -40,8 +40,9 @@ func (v VoteController) AddVote(c *gin.Context) {
 		// 更新参赛选手的得票数，自增1
 		models.UpdatePlayerScore(playerId)
 		// 同时更新redis
-		var redisKey string
-		redisKey = "ranking:" + strconv.Itoa(player.Aid)
+		// var redisKey string // should merge variable declaration with assignment on next line (S1021)go-staticcheck ??
+		// redisKey = "ranking:" + strconv.Itoa(player.Aid)
+		var redisKey string = "ranking:" + strconv.Itoa(player.Aid)
 		cache.Rdb.ZIncrBy(cache.Rctx, redisKey, 1, strconv.Itoa(playerId))
 
 		ReturnSuccess(c, 0, "投票成功", rs, 1)

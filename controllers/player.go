@@ -34,8 +34,9 @@ func (p PlayerController) GetRanking(c *gin.Context) {
 	aidStr := c.DefaultPostForm("aid", "0")
 	aid, _ := strconv.Atoi(aidStr)
 
-	var redisKey string
-	redisKey = "ranking:" + aidStr
+	// var redisKey string
+	// redisKey = "ranking:" + aidStr
+	var redisKey string = "ranking:" + aidStr
 	rs, err := cache.Rdb.ZRevRange(cache.Rctx, redisKey, 1, -1).Result()
 	if err == nil && len(rs) > 0 {
 		var players []models.Player
@@ -63,7 +64,7 @@ func (p PlayerController) GetRanking(c *gin.Context) {
 	}
 	ReturnError(c, 4004, "没有相关信息")
 	// redundant return statement (S1023)go-staticcheck
-	return
+	// return
 
 	// ReturnSuccess(c, 0, "success", rsDb, 1)
 	// redundant return statement (S1023)go-staticcheck
