@@ -1,5 +1,5 @@
 package config
 
 const (
-	Mysqldb = "root:123456@tcp(localhost:3306)/ranking?charset=utf8"
+	Mysqldb = "root:zwz_123@tcp(localhost:3306)/ranking?charset=utf8"
 )
