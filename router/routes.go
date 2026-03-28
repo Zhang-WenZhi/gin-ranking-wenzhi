@@ -1,12 +1,12 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/sessions"
 	sessionsRedis "github.com/gin-contrib/sessions/redis"
+	"github.com/gin-gonic/gin"
+	"wenzhi.com/gin-ranking/config"
 	"wenzhi.com/gin-ranking/controllers"
 	"wenzhi.com/gin-ranking/pkg/logger"
-	"wenzhi.com/gin-ranking/config"
 )
 
 func Router() *gin.Engine {
@@ -64,7 +64,7 @@ func Router() *gin.Engine {
 // 		user.POST("/update", controllers.UserController{}.UpdateUser)
 // 		user.POST("/delete", controllers.UserController{}.DeleteUser)
 // 		user.POST("/list/test", controllers.UserController{}.GetUserListTest)
-		
+
 // 		user.GET("/hello", func(ctx *gin.Context) {
 // 			ctx.String(http.StatusOK, "Hello world string")
 // 		})
